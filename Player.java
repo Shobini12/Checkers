@@ -16,7 +16,7 @@ public class Player{
   public String getName(){
     return name;
   }
-  public void takeTurn(Checkers[][] gb){
+  public void takeTurn(GameBoard gb){
     if(isAI){
       //check which pieces match the color
       //check pieces that can move
@@ -26,12 +26,7 @@ public class Player{
       //make the change to the gameboard
     }
     else{
-      //check which pieces match the color
-      //check pieces that can move
-      //check pieces that can jump
-      //print options to move
-      //get user input on the move
-      //make the change to the gameboard
+      gb.movePiece();
     }
   }
 }
