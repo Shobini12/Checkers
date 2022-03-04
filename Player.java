@@ -7,7 +7,7 @@ public class Player{
   public Player(){
     name = "AI";
     isAI = true;
-    color = "Red"
+    color = "Red";
   }
   public Player(String n,String c){
     name = n;
@@ -16,14 +16,23 @@ public class Player{
   public String getName(){
     return name;
   }
+  public String getColor(){
+    return color;
+  }
   public void takeTurn(GameBoard gb){
     if(isAI){
-      //check which pieces match the color
-      //check pieces that can move
-      //check pieces that can jump
-      //check piece(s) that can make the most jumps
-      //move that piece, if tied choose at random
-      //make the change to the gameboard
+      for(checker[] x : dgb){
+        for(checker y : x){
+          if(y.getColor().equals(color)){
+            if(y.getKing == true){
+              
+            }
+            else{
+              
+            }
+          }
+        }
+      }
     }
     else{
       gb.movePiece();
