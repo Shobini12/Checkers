@@ -1,5 +1,4 @@
 import java.util.Scanner;
-package Checkers;
 
 public class GameBoard {
   Scanner kb = new Scanner(System.in);
@@ -10,12 +9,13 @@ public class GameBoard {
     
   }
 
-  public void movePiece(){
+  public void movePiece(String color){
     boolean firstCheck = false;
     boolean secondCheck = false;
     boolean thirdCheck = false;
     boolean fourthCheck = false;
     boolean fifthCheck = false;
+    boolean sixthCheck = false; 
     //check that these inputs are valid and doesn't make it go off the board
     System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
     String from = kb.nextLine();
@@ -26,7 +26,7 @@ public class GameBoard {
     char toX = to.charAt(0);
     int toY = (int) to.charAt(1);
     //check if color of piece matches player
-    if(dgb[fromX][fromY].equals(player1.getColor()){
+    if(dgb[fromX][fromY].equals(color)){
       firstCheck = true;
     }
     //checks if the space is open
@@ -46,22 +46,29 @@ public class GameBoard {
       fourthCheck = true;
     }
     //check for jump
-    if(){
+    if(fromX+1 = null && toY+1 = null){
+      forceJump();
+    }else if(fromX-1 = null && toY+1 = null){
+       forceJump();
+    }else{
       fifthCheck = true; 
     }
 
+    //check if the color of the piece matches the player
+    if(dgb[fromX][fromY].equals(color)){
+      sixthCheck = true; 
+    }
+
+    
+
     //make sure all checks are true
-    if(firstCheck && secondCheck && thirdCheck && fourthCheck &&)
-    
-    
-  
-
-  
+    if(firstCheck && secondCheck && thirdCheck && fourthCheck){
+      
+    }
   }
 
-  public void checkPos(){ //check for all invalid moves - already occupied, not moving diagonally
+  public void forceJump(){
     
   }
-
   
 }
