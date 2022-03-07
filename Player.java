@@ -21,8 +21,16 @@ public class Player{
   }
   public void takeTurn(GameBoard gb){
     if(isAI){
-      for(checker[] x : dgb){
-        for(checker y : x){
+      ArrayList<Checker> canMove = new ArrayList<Checker>();
+      int farJump = 0;
+      for(int i = 0;i<gbd.length;i++){
+        for(int f = 0;f<gbd[0].length;f++){
+          Checker y = gbd[i][f];
+          boolean moveUR = false;
+          boolean moveUL = false;
+          boolean moveDR = false;
+          boolean moveDL = false;
+          boolean canJump = false;
           if(y.getColor().equals(color)){
             if(y.getKing == true){
               
