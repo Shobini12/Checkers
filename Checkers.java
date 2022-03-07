@@ -22,6 +22,8 @@ public class Checker
   }
 public class KingChecker extends Checker
   {
+    private int location;
+    private String color;
     private static boolean isKing = true;
     
     public KingChecker(int l, String c)
@@ -31,11 +33,11 @@ public class KingChecker extends Checker
     
     public int getLocation()
     {
-      return super.location + "K";
+      return location + "K";
     }
 
     public String getColor()
     {
-      return super.color;
+      return color;
     }
   }
