@@ -41,3 +41,4 @@ public class KingChecker extends Checker
       return color;
     }
   }
+//awd
