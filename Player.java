@@ -21,29 +21,50 @@ public class Player{
   }
   public void takeTurn(GameBoard gb){
     if(isAI){
-      ArrayList<Checker> canMove = new ArrayList<Checker>();
-      int farJump = 0;
-      for(int i = 0;i<gbd.length;i++){
-        for(int f = 0;f<gbd[0].length;f++){
-          Checker y = gbd[i][f];
-          boolean moveUR = false;
-          boolean moveUL = false;
-          boolean moveDR = false;
-          boolean moveDL = false;
-          boolean canJump = false;
-          if(y.getColor().equals(color)){
-            if(y.getKing == true){
-              
+      AImove(gb)
+    }
+    else{
+      gb.movePiece(color);
+    }
+  }
+  public void AImove(GameBoard gb){
+    Checkers[][] gbd = gb.getBoard();
+    for(int i = 0;i<gbd.length;i++){
+      for(int f = 0;f<gbd[0].length;f++){
+        Checkers y = gbd[i][f];
+        boolean moveUR = false;
+        boolean moveUL = false;
+        boolean moveDR = false;
+        boolean moveDL = false;
+        boolean canJump = false;
+        if(y.getColor().equals(color)){
+          if(y.getKing == true){
+            if(i != 0 && f != 0){
+              if(gbd[i-1][f-1] == null){
+                moveUR = true;
+              }
             }
-            else{
-              
+            if(i != 0 && f != 8){
+              if(gbd[i-1][f+1] == null){
+                moveUR = true;
+              }
             }
+            if(i != 8 && f != 0){
+              if(gbd[i+1][f-1] == null){
+                moveUR = true;
+              }
+            }
+            if(i != 8 && f != 8){
+              if(gbd[i+1][f+1] == null){
+                moveUR = true;
+              }
+            }
+          }
+          else{
+              
           }
         }
       }
-    }
-    else{
-      gb.movePiece();
     }
   }
 }
