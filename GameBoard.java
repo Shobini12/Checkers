@@ -42,13 +42,13 @@ public class GameBoard {
       thirdCheck = true;
     }
     //check if where you want to move is a diagonal movement
-     if((toX == fromX+1 || toX == fromX-1) && (toY == fromY+1 ||      toY == fromY-1)){ 
+     if((toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 &&      toY == fromY+1)){ 
       fourthCheck = true;
     }
     //check for jump
-    if(fromX+1 = null && toY+1 = null){
+    if(dgb[fromX+1][toY+1]==null){
       forceJump();
-    }else if(fromX-1 = null && toY+1 = null){
+    }else if(dgb[fromX-1][toY+1]==null){
        forceJump();
     }else{
       fifthCheck = true; 
@@ -59,16 +59,20 @@ public class GameBoard {
       sixthCheck = true; 
     }
 
-    
+ 
 
-    //make sure all checks are true
+    //make sure all checks are tr before moving the pieceue
     if(firstCheck && secondCheck && thirdCheck && fourthCheck){
       
     }
+      //move piece) 
   }
 
   public void forceJump(){
-    
+       //make a forced jump, then reset the fromX and from Y positions to the new locations, then run forceJump again to check for a double jump
   }
+ public void initializeBoard(){
+   
+ }
   
 }
