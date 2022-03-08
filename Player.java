@@ -21,13 +21,41 @@ public class Player{
   }
   public void takeTurn(GameBoard gb){
     if(isAI){
-      AImove(gb)
+      AImove(gb);
     }
     else{
       gb.movePiece(color);
     }
   }
   public void AImove(GameBoard gb){
+    Checkers[][] gbd = gb.getBoard();
+    for(int i = 0;i<gbd.length;i++){
+      for(int f = 0;f<gbd[0].length;f++){
+        if(i != 1 && i != 0 && f != 1 && f != 0){
+              if(gbd[i-1][f-1] != null && gbd[i-2][f-2] == null){
+                
+              }
+            }
+            if(i != 0 && f != 8 && i != 1 && f != 7){
+              if(gbd[i-1][f+1] != null && gbd[i-2][f+2] == null){
+                
+              }
+            }
+        //if is king
+            if(i != 8 && f != 0 && i != 7 && f != 1){
+              if(gbd[i+1][f-1] != null && gbd[i+2][f-2] == null){
+                
+              }
+            }
+            if(i != 8 && f != 8 && i != 7 && f != 7){
+              if(gbd[i+1][f+1] != null && gbd[i+2][f+2] == null){
+                
+              }
+            }
+      }
+    }
+  }
+ /* public void AImove2(GameBoard gb){
     Checkers[][] gbd = gb.getBoard();
     for(int i = 0;i<gbd.length;i++){
       for(int f = 0;f<gbd[0].length;f++){
@@ -66,5 +94,5 @@ public class Player{
         }
       }
     }
-  }
+  }*/
 }
