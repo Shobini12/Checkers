@@ -3,13 +3,14 @@ import java.util.Scanner;
 public class GameBoard {
   Scanner kb = new Scanner(System.in);
   Checkers[][] dgb= new Checkers[8][8]; //digital gameboard
+  int toX;
   
   public GameBoard(){
     
     
   }
 
-  public void movePiece(String color){
+  public void movePiece(String color, boolean isKing){
     boolean firstCheck = false;
     boolean secondCheck = false;
     boolean thirdCheck = false;
@@ -19,11 +20,13 @@ public class GameBoard {
     //check that these inputs are valid and doesn't make it go off the board
     System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
     String from = kb.nextLine();
-    char fromX = from.charAt(0);
+    char fromXChar = from.charAt(0);
+    int fromX = toInt(fromXChar);
     int fromY = (int) from.charAt(1);
     System.out.println("Where would you like to move this piece?     Enter a letter (A-H) and number (0-7)");
     String to = kb.nextLine();
-    char toX = to.charAt(0);
+    char toXChar = to.charAt(0);
+    int toX = toInt(toXChar);
     int toY = (int) to.charAt(1);
     //check if color of piece matches player
     if(dgb[fromX][fromY].equals(color)){
@@ -58,14 +61,11 @@ public class GameBoard {
     if(dgb[fromX][fromY].equals(color)){
       sixthCheck = true; 
     }
-
- 
-
-    //make sure all checks are tr before moving the pieceue
+    //make sure all checks are true before moving the piece
     if(firstCheck && secondCheck && thirdCheck && fourthCheck){
-      
+       //move piece
     }
-      //move piece) 
+     
   }
 
   public void forceJump(){
@@ -73,6 +73,39 @@ public class GameBoard {
   }
  public void initializeBoard(){
    
+ }
+
+ public int toInt(char c){
+   int toX = 0; 
+   switch (c){
+      case 'A':
+        toX = 0;
+        break; 
+      case 'B':
+        toX = 1;
+        break;
+      case 'C':
+        toX = 2;
+        break;
+      case 'D':
+        toX = 3;
+        break;
+      case 'E':
+        toX = 4;
+        break;
+      case 'F':
+        toX = 5;
+        break;
+      case 'G':
+        toX = 6;
+        break;
+      case 'H':
+        toX = 7;
+        break;
+      default: 
+        System.out.println(c + " is invalid");     
+    }
+   return toX;
  }
   
 }
