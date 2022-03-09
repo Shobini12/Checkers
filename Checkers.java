@@ -1,3 +1,4 @@
+
 //checker objects to be stored on table.
 public class Checkers
   {
@@ -42,3 +43,5 @@ class KingChecker extends Checker
     }
   }
 //awd
+
+

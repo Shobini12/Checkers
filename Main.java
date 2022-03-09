@@ -6,3 +6,4 @@ public class Main
       KingChecker test = new KingChecker("10", "5");
     }
 }
+
