@@ -61,18 +61,16 @@ public class GameBoard {
 
  
 
-    //make sure all checks are tr before moving the pieceue
-    if(firstCheck && secondCheck && thirdCheck && fourthCheck){
-      
+    //make sure all checks are true before moving the piece
+    if(firstCheck && secondCheck && thirdCheck && fourthCheck && fifthCheck && sixthCheck ){
+      //move piece
+      dgb[toX][toY] = 
     }
-      //move piece) 
+      
   }
 
   public void forceJump(){
        //make a forced jump, then reset the fromX and from Y positions to the new locations, then run forceJump again to check for a double jump
   }
- public void initializeBoard(){
-   
- }
   
 }
