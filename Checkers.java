@@ -1,10 +1,10 @@
 //checker objects to be stored on table.
-public class Checker
+public class Checkers
   {
     private String location;
     private String color;
     
-    public Checker(String l, String c)
+    public Checkers(String l, String c)
     {
       location = l;
       color = c;
