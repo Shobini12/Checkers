@@ -41,7 +41,7 @@ public class GameBoard {
       thirdCheck = true;
     }
     //Kings can move backwards
-    if(isKing){
+    if(getKing()){
       thirdCheck = true;
     }
     //check if where you want to move is a diagonal movement
@@ -50,9 +50,9 @@ public class GameBoard {
     }
     //check for jump
     if(dgb[fromX+1][toY+1]==null){
-      forceJump();
+      forceJumpRight(fromX, toY);
     }else if(dgb[fromX-1][toY+1]==null){
-       forceJump();
+       forceJumpLeft(fromX, toY);
     }else{
       fifthCheck = true; 
     }
@@ -62,16 +62,25 @@ public class GameBoard {
       sixthCheck = true; 
     }
     //make sure all checks are true before moving the piece
-    if(firstCheck && secondCheck && thirdCheck && fourthCheck){
+    if(firstCheck && secondCheck && thirdCheck && fourthCheck && fifthCheck && sixthCheck){
        //move piece
+      dgb[fromX][fromY] = null;
+      dgb[toX][toY] = dgb[fromX][fromY]; 
     }
-     
   }
 
-  public void forceJump(){
-       //make a forced jump, then reset the fromX and from Y positions to the new locations, then run forceJump again to check for a double jump
+  public void forceJumpRight(int x, int y){
+    dgb[x][y] = null;
+    dgb[x][y] = [fromX+1][toY+1];
   }
+
+  public void forceJumpLeft(int x, int y){
+    dgb[x][y] = null;
+    dgb[x][y] = [fromX-1][toY+1];
+  }
+  
  public void initializeBoard(){
+   
    
  }
 
