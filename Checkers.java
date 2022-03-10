@@ -20,6 +20,11 @@ public class Checkers
     {
       return color;
     }
+
+    public boolean isKing()
+    {
+      return false;
+    }
   }
 class KingChecker extends Checker
   {
@@ -40,6 +45,11 @@ class KingChecker extends Checker
     public String getColor()
     {
       return color;
+    }
+
+    public boolean isKing()
+    {
+      return true;
     }
   }
 //awd
