@@ -2,18 +2,20 @@
 //checker objects to be stored on table.
 public class Checkers
   {
-    private String location;
+    private int locationy;
+    private int locationx;
     private String color;
     
-    public Checkers(String l, String c)
+    public Checkers(int x, int y, String c)
     {
-      location = l;
+      locationy = y;
+      locationx = x;
       color = c;
     }
     
-    public String getLocation()
+    public int getLocation()
     {
-      return location;
+      return locationx + locationy;
     }
     
     public String getColor()
@@ -26,20 +28,21 @@ public class Checkers
       return false;
     }
   }
-class KingChecker extends Checker
+class KingChecker extends Checkers
   {
-    private String location;
+    private int locationx;
+    private int locationy;
     private String color;
     private static boolean isKing = true;
     
-    public KingChecker(String l, String c)
+    public KingChecker(int x, int y, String c)
     {
-      super(l, c);
+      super(x,y,c);
     }
     
-    public String getLocation()
+    public int getLocation()
     {
-      return location + "K";
+      return locationx + locationy;
     }
 
     public String getColor()
