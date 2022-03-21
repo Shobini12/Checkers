@@ -1,9 +1,7 @@
-import java.util.*;
 public class Player{
   private String name;
   private boolean isAI = false;
   private String color;
-  Scanner scan1 = new Scanner(System.in);
   //basic default constructor that makes an AI
   public Player(){
     name = "AI";
@@ -25,16 +23,15 @@ public class Player{
   //has a player take a turn and runs different methods if they are an AI or player
   public void takeTurn(GameBoard gb){
     if(isAI){
-      AImove(gb,false);
+     // AImove(gb.getBoard,false);
     }
     else{
-      gb.movePiece(color);
+      gb.movePiece(color,false);
     }
   }
 
   //AI
-  public void AImove(GameBoard gb, boolean hasJumped){
-    //Checkers[][] gbd = gb.getBoard();
+  public void AImove(Checkers[][] gbd, boolean hasJumped){
     boolean hasMoved = false;
     for(int i = gbd.length-1;i>0;i--){
       if(hasMoved){
@@ -87,7 +84,7 @@ public class Player{
       }
     }
     if(hasMoved){
-      AImove(gb,true);
+      AImove(gbd,true);
     }
     else if(hasJumped == false){
       for(int i = gbd.length-1;i>0;i--){
