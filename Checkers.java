@@ -33,7 +33,6 @@ class KingChecker extends Checkers
     private int locationx;
     private int locationy;
     private String color;
-    private static boolean isKing = true;
     
     public KingChecker(int x, int y, String c)
     {
