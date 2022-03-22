@@ -49,10 +49,10 @@ public class GameBoard {
       fourthCheck = true;
     }
     //check for jump
-    if(dgb[fromX+1][toY+1]==null){
-      forceJumpRight(fromX, toY);
-    }else if(dgb[fromX-1][toY+1]==null){
-       forceJumpLeft(fromX, toY);
+    if(dgb[fromX+1][fromY+1]==null){
+      forceJumpRight(fromX, fromY);
+    }else if(dgb[fromX-1][fromY+1]==null){
+       forceJumpLeft(fromX, fromY);
     }else{
       fifthCheck = true; 
     }
@@ -70,18 +70,62 @@ public class GameBoard {
   }
 
   public void forceJumpRight(int x, int y){
+    dgb[x+1][y+1] = dgb[x][y];
     dgb[x][y] = null;
-    dgb[x][y] = [fromX+1][toY+1];
-  }
-
-  public void forceJumpLeft(int x, int y){
-    dgb[x][y] = null;
-    dgb[x][y] = [fromX-1][toY+1];
+    // 3/21 - check for double jump
+    if(dgb[x+2][y+2]==null){
+      doubleJumpRight(x,y);
+    }else if(dgb[x-2][y+2]==null){
+      doubleJumpLeft(x,y);
+    }
   }
   
+  public void forceJumpLeft(int x, int y){
+    dgb[x-1][y+1] =  dgb[x][y];
+    dgb[x][y] = null;
+
+  }
+
+  public void doubleJumpRight(int x, int y){
+    //double jump to the right
+    dgb[x+2][y+2] = dgb[x+1][y+1];
+    dgb[x+1][y+1] = null;
+  }
+  
+  public void doubleJumpLeft(int x, int y){
+    dgb[x-2][y+2] = dgb[x+1][y+1];
+    dgb[x][y] = null;
+  }
  public void initializeBoard(){
+   dgb[0][0] = new Checkers(0,0,"White");
+   dgb[0][2] = new Checkers(0,2,"White");
+   dgb[0][4] = new Checkers(0,4,"White");
+   dgb[0][6] = new Checkers(0,6,"White");
+
+   dgb[1][1] = new Checkers(1,1,"White");
+   dgb[1][3] = new Checkers(1,3,"White");
+   dgb[1][5] = new Checkers(1,5,"White");
+   dgb[1][7] = new Checkers(1,7,"White");
    
+   dgb[2][0] = new Checkers(2,0,"White");
+   dgb[2][2] = new Checkers(2,2,"White");
+   dgb[2][4] = new Checkers(2,4,"White");
+   dgb[2][6] = new Checkers(2,6,"White");
+
+   dgb[5][1] = new Checkers(5,1,"Black");
+   dgb[5][3] = new Checkers(5,3,"Black");
+   dgb[5][5] = new Checkers(5,5,"Black");
+   dgb[5][7] = new Checkers(5,7,"Black");
+
+   dgb[6][0] = new Checkers(6,0,"Black");
+   dgb[6][2] = new Checkers(6,2,"Black");
+   dgb[6][4] = new Checkers(6,4,"Black");
+   dgb[6][6] = new Checkers(6,6,"Black");
    
+   dgb[7][1] = new Checkers(7,1,"Black");
+   dgb[7][3] = new Checkers(7,5,"Black");
+   dgb[7][5] = new Checkers(7,5,"Black");
+   dgb[7][7] = new Checkers(7,7,"Black"); 
  }
 
  public int toInt(char c){
