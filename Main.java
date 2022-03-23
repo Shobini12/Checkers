@@ -3,7 +3,7 @@ public class Main
   
   public static void main(String[] args)
     {
-      KingChecker test = new KingChecker("10", "5");
+      KingChecker test = new KingChecker(8, 5,"White");
       //declare instance variables and setup
       //ask for user inputs and settings to store in variable.
       //while !gameWon{
