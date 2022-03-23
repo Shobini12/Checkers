@@ -10,7 +10,6 @@ public class GameBoard {
     boolean secondCheck = false;
     boolean thirdCheck = false;
     boolean fourthCheck = false;
-    boolean fifthCheck = false; 
     //check that these inputs are valid and doesn't make it go off the board
     System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
     String from = kb.nextLine();
@@ -34,36 +33,40 @@ public class GameBoard {
     if(toY>fromY){
       thirdCheck = true;
     }
-    //Kings can move backwards
-    if(getKing()){
-      thirdCheck = true;
-    }
+    
     //check if where you want to move is a diagonal movement
      if((toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 &&      toY == fromY+1)){ 
       fourthCheck = true;
     }
 
-    //check if the color of the piece matches the player
-    if(dgb[fromX][fromY].equals(color)){
-      fifthCheck = true; 
+    //Kings can move backwards
+    if(getKing()&&(toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
+      thirdCheck = true;
+      fourthCheck = true;
     }
+
     //make sure all checks are true before moving the piece
-    if(firstCheck && secondCheck && thirdCheck && fourthCheck && fifthCheck){
+    if(firstCheck && secondCheck && thirdCheck && fourthCheck){
       //check for jump
-      if(!checkJump()){
-          //move piece
+      if(checkJump(fromX, fromY) == 0){
+        forceJumpRight(fromX, fromY); 
+      }else if(checkJump(fromX, fromY) == 1){
+        forceJumpLeft(fromX, fromY); 
+      }else{
         dgb[fromX][fromY] = null;
         dgb[toX][toY] = dgb[fromX][fromY];
       }
     }
   }
 
-  public boolean checkJump(int x, int y){
+  public int checkJump(int x, int y){
     //check for jump
-    if(dgb[x+2][y+2]==null && dgb[x+1][y+1]!= null && !(dgb[x+1][fromY+1].getColor().equalsIgnoreCase(dgb[fromX][fromY].getColor()))){ //also check that the space one right and one up is a piece of the opposite color
-      forceJumpRight(fromX, fromY);
-    }else if(dgb[fromX-2][fromY+2]==null && dgb[fromX-1][fromY+1]!= null && !(dgb[fromX-1][fromY+1].getColor().equalsIgnoreCase(dgb[fromX][fromY].getColor()))){
-         forceJumpLeft(fromX, fromY);
+    if(dgb[x+2][y+2]==null && dgb[x+1][y+1]!= null && !(dgb[x+1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){ //check that the space one right and one up is a piece of the opposite color
+      return 0; 
+    }else if(dgb[x-2][y+2]==null && dgb[x-1][y+1]!= null && !(dgb[x-1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
+      return 1; 
+    }else{
+      return 2; 
     }
   }
 
@@ -75,7 +78,11 @@ public class GameBoard {
     //award point to the color that captured the piece in the jump
     dgb[x][y] = null;
     //check for double jump
-    
+    if(checkJump(x+2, y+2)==0){
+      doubleJumpRight(x+2, y+2);
+    }else if(checkJump(x+2, y+2)==1){
+      doubleJumpLeft(x+2, y+2);
+    }
   }
   
   public void forceJumpLeft(int x, int y){
@@ -83,6 +90,12 @@ public class GameBoard {
     dgb[x-1][y+1] = null;
     //award point to the color that captured the piece in the jump
     dgb[x][y] = null;
+    //check for double jump
+    if(checkJump(x-2, y+2)==0){
+      doubleJumpLeft(x-2, y+2);
+    }else if(checkJump(x-2, y+2)==1){
+      doubleJumpLeft(x-2, y+2);
+    }
 
   }
 
