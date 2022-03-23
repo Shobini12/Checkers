@@ -40,7 +40,7 @@ public class GameBoard {
     }
 
     //Kings can move backwards
-    if(getKing()&&(toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
+    if(dgb[fromX][toX].isKing()&&(toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
       thirdCheck = true;
       fourthCheck = true;
     }
