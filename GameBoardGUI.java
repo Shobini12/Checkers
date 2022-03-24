@@ -61,7 +61,7 @@ public class CheckersDemo extends JFrame {
 
 		}
 			
-			public void updatePieces(Graphics g, String color, int obj[][], boolean king){
+			public void updatePieces(Graphics g, String color, Checkers[][] checkers, boolean king){
 				
 				
 			int square = 65;  //size of each square
