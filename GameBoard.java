@@ -4,6 +4,9 @@ public class GameBoard {
   Scanner kb = new Scanner(System.in);
   Checkers[][] dgb= new Checkers[8][8]; //digital gameboard
   int toX;
+  public Gameboard(){
+    initBoard();
+  }
   
   public void movePiece(String color, boolean isKing){
     boolean firstCheck = false;
@@ -70,7 +73,8 @@ public class GameBoard {
     }
   }
 
-  //if piece is a king, it can jump in any direction
+  //if piece is a king, it can jump in any direction 3/23
+  
 
   public void forceJumpRight(int x, int y){
     dgb[x+2][y+2] = dgb[x][y];
@@ -110,35 +114,35 @@ public class GameBoard {
     dgb[x][y] = null;
   }
  public void initBoard(){
-   dgb[0][0] = new Checkers(0,0,"White");
-   dgb[0][2] = new Checkers(0,2,"White");
-   dgb[0][4] = new Checkers(0,4,"White");
-   dgb[0][6] = new Checkers(0,6,"White");
+   dgb[0][0] = new Checkers(0,0,"Red");
+   dgb[0][2] = new Checkers(0,2,"Red");
+   dgb[0][4] = new Checkers(0,4,"Red");
+   dgb[0][6] = new Checkers(0,6,"Red");
 
-   dgb[1][1] = new Checkers(1,1,"White");
-   dgb[1][3] = new Checkers(1,3,"White");
-   dgb[1][5] = new Checkers(1,5,"White");
-   dgb[1][7] = new Checkers(1,7,"White");
+   dgb[1][1] = new Checkers(1,1,"Red");
+   dgb[1][3] = new Checkers(1,3,"Red");
+   dgb[1][5] = new Checkers(1,5,"Red");
+   dgb[1][7] = new Checkers(1,7,"Red");
    
-   dgb[2][0] = new Checkers(2,0,"White");
-   dgb[2][2] = new Checkers(2,2,"White");
-   dgb[2][4] = new Checkers(2,4,"White");
-   dgb[2][6] = new Checkers(2,6,"White");
+   dgb[2][0] = new Checkers(2,0,"Red");
+   dgb[2][2] = new Checkers(2,2,"Red");
+   dgb[2][4] = new Checkers(2,4,"Red");
+   dgb[2][6] = new Checkers(2,6,"Red");
 
-   dgb[5][1] = new Checkers(5,1,"Black");
-   dgb[5][3] = new Checkers(5,3,"Black");
-   dgb[5][5] = new Checkers(5,5,"Black");
-   dgb[5][7] = new Checkers(5,7,"Black");
+   dgb[5][1] = new Checkers(5,1,"Blue");
+   dgb[5][3] = new Checkers(5,3,"Blue");
+   dgb[5][5] = new Checkers(5,5,"Blue");
+   dgb[5][7] = new Checkers(5,7,"Blue");
 
-   dgb[6][0] = new Checkers(6,0,"Black");
-   dgb[6][2] = new Checkers(6,2,"Black");
-   dgb[6][4] = new Checkers(6,4,"Black");
-   dgb[6][6] = new Checkers(6,6,"Black");
+   dgb[6][0] = new Checkers(6,0,"Blue");
+   dgb[6][2] = new Checkers(6,2,"Blue");
+   dgb[6][4] = new Checkers(6,4,"Blue");
+   dgb[6][6] = new Checkers(6,6,"Blue");
    
-   dgb[7][1] = new Checkers(7,1,"Black");
-   dgb[7][3] = new Checkers(7,5,"Black");
-   dgb[7][5] = new Checkers(7,5,"Black");
-   dgb[7][7] = new Checkers(7,7,"Black"); 
+   dgb[7][1] = new Checkers(7,1,"Blue");
+   dgb[7][3] = new Checkers(7,5,"Blue");
+   dgb[7][5] = new Checkers(7,5,"Blue");
+   dgb[7][7] = new Checkers(7,7,"Blue"); 
  }
 
  public int toInt(char c){
