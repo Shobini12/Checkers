@@ -4,6 +4,7 @@ public class GameBoard {
   Scanner kb = new Scanner(System.in);
   Checkers[][] dgb= new Checkers[8][8]; //digital gameboard
   int toX;
+  
   public Gameboard(){
     initBoard();
   }
@@ -43,7 +44,7 @@ public class GameBoard {
     }
 
     //Kings can move backwards
-    if(dgb[fromX][toX].isKing()&&(toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
+    if(checkKing(fromX,fromY)&&(toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
       thirdCheck = true;
       fourthCheck = true;
     }
@@ -51,7 +52,9 @@ public class GameBoard {
     //make sure all checks are true before moving the piece
     if(firstCheck && secondCheck && thirdCheck && fourthCheck){
       //check for jump
-      if(checkJump(fromX, fromY) == 0){
+      if(checkKing){
+        kingJump(fromX, fromY);
+      }else if(checkJump(fromX, fromY) == 0){
         forceJumpRight(fromX, fromY); 
       }else if(checkJump(fromX, fromY) == 1){
         forceJumpLeft(fromX, fromY); 
@@ -73,8 +76,19 @@ public class GameBoard {
     }
   }
 
+  public boolean checkKing(int x, int y){
+    if(dgb[x][y].isKing()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   //if piece is a king, it can jump in any direction 3/23
-  
+  public void kingJump(int x, int y){
+    
+   
+  }
 
   public void forceJumpRight(int x, int y){
     dgb[x+2][y+2] = dgb[x][y];
