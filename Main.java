@@ -3,7 +3,9 @@ public class Main
   
   public static void main(String[] args)
     {
-      KingChecker test = new KingChecker(8, 5,"White");
+      GameBoard gb1 = new GameBoard();
+      GameBoardGUI gb = new GameBoardGUI();
+      gb.updatePieces("blue", gb1.getBoard(), false);
       //declare instance variables and setup
       //ask for user inputs and settings to store in variable.
       //while !gameWon{

@@ -4,8 +4,11 @@ public class GameBoard {
   Scanner kb = new Scanner(System.in);
   Checkers[][] dgb= new Checkers[8][8]; //digital gameboard
   int toX;
-  public Gameboard(){
+  public GameBoard(){
     initBoard();
+  }
+  public Checkers[][] getBoard(){
+   return dgb;
   }
   
   public void movePiece(String color, boolean isKing){

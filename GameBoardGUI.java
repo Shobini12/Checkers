@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.util.*;
 
 
-public class CheckersDemo extends JFrame {
+public class GameBoardGUI extends JFrame {
 	
 	private checkerCanvas canvas = new checkerCanvas();
 	
@@ -11,7 +11,7 @@ public class CheckersDemo extends JFrame {
 	
 	
 	
-	public CheckersDemo(){
+	public GameBoardGUI(){
 		setLayout(new BorderLayout());
 		setSize(750, 750);
 		setTitle("Checkers");
@@ -71,7 +71,7 @@ public class CheckersDemo extends JFrame {
 				//check 2d gb array to determine piece placement
 					for(int a=0;a<8;a++){
 					for(int b=0;b<8;b++){
-						if(!(obj[a][b] == 0)){
+						if(!(checkers[a][b] == null)){
 							if(color.equalsIgnoreCase("blue")){
 								g.setColor(Color.blue);
 								if(king == false){
