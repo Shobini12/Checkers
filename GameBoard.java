@@ -14,6 +14,7 @@ public class GameBoard {
     boolean secondCheck = false;
     boolean thirdCheck = false;
     boolean fourthCheck = false;
+    boolean fifthCheck = false; 
     //check that these inputs are valid and doesn't make it go off the board
     System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
     String from = kb.nextLine();
@@ -48,9 +49,13 @@ public class GameBoard {
       thirdCheck = true;
       fourthCheck = true;
     }
+    //make sure piece doesn't go off the board
+    if((toX>=0 && toX<=7)&&(toY>=0 && toY<=7)){
+      fifthCheck = true; 
+    }
 
     //make sure all checks are true before moving the piece
-    if(firstCheck && secondCheck && thirdCheck && fourthCheck){
+    if(firstCheck && secondCheck && thirdCheck && fourthCheck && fifthCheck){
       //check for jump
       if(checkKing){
         kingJump(fromX, fromY);
@@ -84,9 +89,19 @@ public class GameBoard {
     }
   }
 
-  //if piece is a king, it can jump in any direction 3/23
   public void kingJump(int x, int y){
-    
+    if(dgb[x+2][y+2]==null && dgb[x+1][y+1]!= null && !(dgb[x+1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){ 
+      //jump up right
+      forceJumpRight(x,y);
+    }else if(dgb[x-2][y+2]==null && dgb[x-1][y+1]!= null && !(dgb[x-1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
+      //jump up left
+      forceJumpLeft(x,y);
+    }else if(dgb[x+2][y-2]==null && dgb[x+1][y-1]!= null && !(dgb[x+1][y-1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
+      //jump down left
+      //make 4 new methods for king backwards jumps and king double jumps 3/25
+    }else if(dgb[x-2][y-2]==null && dgb[x-1][y-1]!= null && !(dgb[x-1][y-1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
+      //jump down left 
+    }
    
   }
 
@@ -117,15 +132,17 @@ public class GameBoard {
 
   }
 
+  
+
   public void doubleJumpRight(int x, int y){
     //double jump to the right
-    dgb[x+2][y+2] = dgb[x+1][y+1];
+    dgb[x+2][y+2] = dgb[x][y];
     dgb[x+1][y+1] = null;
   }
   
   public void doubleJumpLeft(int x, int y){
-    dgb[x-2][y+2] = dgb[x+1][y+1];
-    dgb[x][y] = null;
+    dgb[x-2][y+2] = dgb[x][y];
+    dgb[x-1][y+1] = null;
   }
  public void initBoard(){
    dgb[0][0] = new Checkers(0,0,"Red");
