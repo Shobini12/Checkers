@@ -5,7 +5,7 @@ public class GameBoard {
   Checkers[][] dgb= new Checkers[8][8]; //digital gameboard
   int toX;
   
-  public Gameboard(){
+  public GameBoard(){
     initBoard();
   }
   
@@ -57,7 +57,7 @@ public class GameBoard {
     //make sure all checks are true before moving the piece
     if(firstCheck && secondCheck && thirdCheck && fourthCheck && fifthCheck){
       //check for jump
-      if(checkKing){
+      if(checkKing(fromX, fromY)){
         kingJump(fromX, fromY);
       }else if(checkJump(fromX, fromY) == 0){
         forceJumpUR(fromX, fromY); 
@@ -111,9 +111,9 @@ public class GameBoard {
     dgb[x][y] = null;
     //check for double jump
     if(checkJump(x+2, y+2)==0){
-      doubleJumpRight(x+2, y+2);
+      doubleUR(x+2, y+2);
     }else if(checkJump(x+2, y+2)==1){
-      doubleJumpLeft(x+2, y+2);
+      doubleUL(x+2, y+2);
     }
   }
   
@@ -158,7 +158,6 @@ public class GameBoard {
     }else if(checkJump(x-2, y-2)==1){
       doubleDL(x-2, y-2);
     }
-
   }
   
   public void doubleUR(int x, int y){
