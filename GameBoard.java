@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class GameBoard {
   Scanner kb = new Scanner(System.in);
-  Checkers[][] dgb= new Checkers[8][8]; //digital gameboard
+  //digital gameboard
+  Checkers[][] dgb= new Checkers[8][8]; 
   int toX;
   
   public GameBoard(){
@@ -15,25 +16,29 @@ public class GameBoard {
     boolean thirdCheck = false;
     boolean fourthCheck = false;
     boolean fifthCheck = false; 
-    //check that these inputs are valid and doesn't make it go off the board
-    System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
+    
+    //prompt user to make a move
+    System.out.println("Which piece do you want to move? Enter a capital letter (A-H) and number (0-7)");
     String from = kb.nextLine();
     char fromXChar = from.charAt(0);
-    int fromX = toInt(fromXChar);
+    int fromX = toInt(fromXChar); 
     int fromY = (int) from.charAt(1);
-    System.out.println("Where would you like to move this piece?     Enter a letter (A-H) and number (0-7)");
+    System.out.println("Where would you like to move this piece? Enter a capital letter (A-H) and number (0-7)");
     String to = kb.nextLine();
     char toXChar = to.charAt(0);
-    int toX = toInt(toXChar);
+    toX = toInt(toXChar);
     int toY = (int) to.charAt(1);
+    
     //check if color of piece matches player
-    if(dgb[fromX][fromY].equals(color)){
+    if(dgb[fromX][fromY].getColor().equals(color)){
       firstCheck = true;
     }
+    
     //checks if the space is open
     if(dgb[toX][toY] == null){ 
       secondCheck = true;
     }
+    
     //check that the piece is moving forward
     if(toY>fromY){
       thirdCheck = true;
@@ -45,10 +50,11 @@ public class GameBoard {
     }
 
     //Kings can move backwards
-    if(checkKing(fromX,fromY)&&(toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
+    if(checkKing(fromX,fromY)&&(toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 && toY == fromY+1)||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
       thirdCheck = true;
       fourthCheck = true;
     }
+    
     //make sure piece doesn't go off the board
     if((toX>=0 && toX<=7)&&(toY>=0 && toY<=7)){
       fifthCheck = true; 
@@ -91,17 +97,14 @@ public class GameBoard {
 
   public void kingJump(int x, int y){
     if(dgb[x+2][y+2]==null && dgb[x+1][y+1]!= null && !(dgb[x+1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){ 
-      //jump up right
       forceJumpUR(x,y);
     }else if(dgb[x-2][y+2]==null && dgb[x-1][y+1]!= null && !(dgb[x-1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
-      //jump up left
       forceJumpUL(x,y);
     }else if(dgb[x+2][y-2]==null && dgb[x+1][y-1]!= null && !(dgb[x+1][y-1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
      forceJumpDR(x,y);
     }else if(dgb[x-2][y-2]==null && dgb[x-1][y-1]!= null && !(dgb[x-1][y-1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
       forceJumpDL(x,y);
     }
-   
   }
 
   public void forceJumpUR(int x, int y){
@@ -128,9 +131,8 @@ public class GameBoard {
     }else if(checkJump(x-2, y+2)==1){
       doubleUL(x-2, y+2);
     }
-
   }
-
+  
   //for kings only 
   public void forceJumpDR(int x, int y){
     dgb[x+2][y-2] = dgb[x][y];
@@ -143,7 +145,6 @@ public class GameBoard {
     }else if(checkJump(x+2, y-2)==1){
       doubleDL(x+2, y-2);
     }
-
   }
 
   //for kings only 
@@ -172,13 +173,11 @@ public class GameBoard {
   }
 
    public void doubleDR(int x, int y){
-    //double jump to the right
     dgb[x+2][y-2] = dgb[x][y];
     dgb[x+1][y-1] = null;
   }
 
   public void doubleDL(int x, int y){
-    //double jump to the right
     dgb[x-2][y-2] = dgb[x][y];
     dgb[x-1][y-1] = null;
   }
@@ -215,8 +214,7 @@ public class GameBoard {
    dgb[7][7] = new Checkers(7,7,"Blue"); 
  }
 
- public int toInt(char c){
-   int toX = 0; 
+ public int toInt(char c){ 
    switch (c){
       case 'A':
         toX = 0;
@@ -246,5 +244,5 @@ public class GameBoard {
         System.out.println(c + " is invalid");     
     }
    return toX;
- }
+  }
 }
