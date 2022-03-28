@@ -60,9 +60,9 @@ public class GameBoard {
       if(checkKing){
         kingJump(fromX, fromY);
       }else if(checkJump(fromX, fromY) == 0){
-        forceJumpRight(fromX, fromY); 
+        forceJumpUR(fromX, fromY); 
       }else if(checkJump(fromX, fromY) == 1){
-        forceJumpLeft(fromX, fromY); 
+        forceJumpUL(fromX, fromY); 
       }else{
         dgb[fromX][fromY] = null;
         dgb[toX][toY] = dgb[fromX][fromY];
@@ -92,20 +92,19 @@ public class GameBoard {
   public void kingJump(int x, int y){
     if(dgb[x+2][y+2]==null && dgb[x+1][y+1]!= null && !(dgb[x+1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){ 
       //jump up right
-      forceJumpRight(x,y);
+      forceJumpUR(x,y);
     }else if(dgb[x-2][y+2]==null && dgb[x-1][y+1]!= null && !(dgb[x-1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
       //jump up left
-      forceJumpLeft(x,y);
+      forceJumpUL(x,y);
     }else if(dgb[x+2][y-2]==null && dgb[x+1][y-1]!= null && !(dgb[x+1][y-1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
-      //jump down left
-      //make 4 new methods for king backwards jumps and king double jumps 3/25
+     forceJumpDR(x,y);
     }else if(dgb[x-2][y-2]==null && dgb[x-1][y-1]!= null && !(dgb[x-1][y-1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
-      //jump down left 
+      forceJumpDL(x,y);
     }
    
   }
 
-  public void forceJumpRight(int x, int y){
+  public void forceJumpUR(int x, int y){
     dgb[x+2][y+2] = dgb[x][y];
     dgb[x+1][y+1] = null;
     //award point to the color that captured the piece in the jump
@@ -118,32 +117,73 @@ public class GameBoard {
     }
   }
   
-  public void forceJumpLeft(int x, int y){
+  public void forceJumpUL(int x, int y){
     dgb[x-2][y+2] = dgb[x][y];
     dgb[x-1][y+1] = null;
     //award point to the color that captured the piece in the jump
     dgb[x][y] = null;
     //check for double jump
     if(checkJump(x-2, y+2)==0){
-      doubleJumpLeft(x-2, y+2);
+      doubleUR(x-2, y+2);
     }else if(checkJump(x-2, y+2)==1){
-      doubleJumpLeft(x-2, y+2);
+      doubleUL(x-2, y+2);
     }
 
   }
 
-  
+  //for kings only 
+  public void forceJumpDR(int x, int y){
+    dgb[x+2][y-2] = dgb[x][y];
+    dgb[x+1][y-1] = null;
+    //award point to the color that captured the piece in the jump
+    dgb[x][y] = null;
+    //check for double jump
+    if(checkJump(x+2, y-2)==0){
+      doubleDR(x+2, y-2);
+    }else if(checkJump(x+2, y-2)==1){
+      doubleDL(x+2, y-2);
+    }
 
-  public void doubleJumpRight(int x, int y){
+  }
+
+  //for kings only 
+  public void forceJumpDL(int x, int y){
+    dgb[x-2][y-2] = dgb[x][y];
+    dgb[x-1][y-1] = null;
+    //award point to the color that captured the piece in the jump
+    dgb[x][y] = null;
+    //check for double jump
+    if(checkJump(x-2, y-2)==0){
+      doubleDR(x-2, y-2);
+    }else if(checkJump(x-2, y-2)==1){
+      doubleDL(x-2, y-2);
+    }
+
+  }
+  
+  public void doubleUR(int x, int y){
     //double jump to the right
     dgb[x+2][y+2] = dgb[x][y];
     dgb[x+1][y+1] = null;
   }
   
-  public void doubleJumpLeft(int x, int y){
+  public void doubleUL(int x, int y){
     dgb[x-2][y+2] = dgb[x][y];
     dgb[x-1][y+1] = null;
   }
+
+   public void doubleDR(int x, int y){
+    //double jump to the right
+    dgb[x+2][y-2] = dgb[x][y];
+    dgb[x+1][y-1] = null;
+  }
+
+  public void doubleDL(int x, int y){
+    //double jump to the right
+    dgb[x-2][y-2] = dgb[x][y];
+    dgb[x-1][y-1] = null;
+  }
+  
  public void initBoard(){
    dgb[0][0] = new Checkers(0,0,"Red");
    dgb[0][2] = new Checkers(0,2,"Red");
