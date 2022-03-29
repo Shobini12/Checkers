@@ -1,11 +1,14 @@
+import java.util.*;
 public class Main
 {
   
-  public static void main(String[] args)
+  public static void main(String[] args)throws Exception
     {
       GameBoard gb1 = new GameBoard();
-      GameBoardGUI gb = new GameBoardGUI();
-      gb.updatePieces("blue", gb1.getBoard(), false);
+      GameBoardGUI gb = new GameBoardGUI(gb1);
+      gb1.movePiece("Blue",false);
+      gb.update();
+      
       //declare instance variables and setup
       //ask for user inputs and settings to store in variable.
       //while !gameWon{

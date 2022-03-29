@@ -20,8 +20,11 @@ public class GameBoard {
     System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
     String from = kb.nextLine();
     char fromXChar = from.charAt(0);
+    System.out.println(fromXChar);
     int fromX = toInt(fromXChar);
-    int fromY = (int) from.charAt(1);
+    System.out.println(fromX);
+    int fromY = Integer.parseInt(from.substring(1));
+    System.out.println(fromY);
     System.out.println("Where would you like to move this piece?     Enter a letter (A-H) and number (0-7)");
     String to = kb.nextLine();
     char toXChar = to.charAt(0);
