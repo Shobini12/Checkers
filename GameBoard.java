@@ -16,20 +16,30 @@ public class GameBoard {
     boolean secondCheck = false;
     boolean thirdCheck = false;
     boolean fourthCheck = false;
+    
     //check that these inputs are valid and doesn't make it go off the board
-    System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
-    String from = kb.nextLine();
-    char fromXChar = from.charAt(0);
-    System.out.println(fromXChar);
-    int fromX = toInt(fromXChar);
-    System.out.println(fromX);
-    int fromY = Integer.parseInt(from.substring(1));
-    System.out.println(fromY);
-    System.out.println("Where would you like to move this piece?     Enter a letter (A-H) and number (0-7)");
-    String to = kb.nextLine();
-    char toXChar = to.charAt(0);
-    int toX = toInt(toXChar);
-    int toY = (int) to.charAt(1);
+    boolean isNull = true;
+    char fromXChar = 'a';
+    int fromX = 0;
+    int fromY = 0;
+    char toXChar = 'a';
+    int toX = 0;
+    int toY = 0;
+    while(isNull){
+       System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
+       String from = kb.nextLine();
+       fromXChar = from.charAt(0);
+       fromX = toInt(fromXChar);
+       fromY = Integer.parseInt(from.substring(1)) - 1;
+       System.out.println("Where would you like to move this piece?     Enter a letter (A-H) and number (0-7)");
+       String to = kb.nextLine();
+       toXChar = to.charAt(0);
+       toX = toInt(toXChar);
+       toY = Integer.parseInt(to.substring(1)) - 1;
+       if(!(dgb[fromX][fromY] == null)){
+         isNull = false;
+       }
+    }
     //check if color of piece matches player
     if(dgb[fromX][fromY].equals(color)){
       firstCheck = true;
@@ -44,12 +54,12 @@ public class GameBoard {
     }
     
     //check if where you want to move is a diagonal movement
-     if((toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 &&      toY == fromY+1)){ 
+     if((toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 && toY == fromY+1)){ 
       fourthCheck = true;
     }
 
     //Kings can move backwards
-    if(dgb[fromX][toX].isKing()&&(toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
+    if(dgb[fromX][fromY].isKing()&&(toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
       thirdCheck = true;
       fourthCheck = true;
     }
@@ -62,8 +72,8 @@ public class GameBoard {
       }else if(checkJump(fromX, fromY) == 1){
         forceJumpLeft(fromX, fromY); 
       }else{
-        dgb[fromX][fromY] = null;
-        dgb[toX][toY] = dgb[fromX][fromY];
+         dgb[toX][toY] = dgb[fromX][fromY];
+         dgb[fromX][fromY] = null;
       }
     }
   }
@@ -121,33 +131,33 @@ public class GameBoard {
   }
  public void initBoard(){
    dgb[0][0] = new Checkers(0,0,"Red");
-   dgb[0][2] = new Checkers(0,2,"Red");
-   dgb[0][4] = new Checkers(0,4,"Red");
-   dgb[0][6] = new Checkers(0,6,"Red");
+   dgb[2][0] = new Checkers(2,0,"Red");
+   dgb[4][0] = new Checkers(4,0,"Red");
+   dgb[6][0] = new Checkers(6,0,"Red");
 
    dgb[1][1] = new Checkers(1,1,"Red");
-   dgb[1][3] = new Checkers(1,3,"Red");
-   dgb[1][5] = new Checkers(1,5,"Red");
-   dgb[1][7] = new Checkers(1,7,"Red");
+   dgb[3][1] = new Checkers(3,1,"Red");
+   dgb[5][1] = new Checkers(5,1,"Red");
+   dgb[7][1] = new Checkers(7,1,"Red");
    
-   dgb[2][0] = new Checkers(2,0,"Red");
+   dgb[0][2] = new Checkers(0,2,"Red");
    dgb[2][2] = new Checkers(2,2,"Red");
-   dgb[2][4] = new Checkers(2,4,"Red");
-   dgb[2][6] = new Checkers(2,6,"Red");
+   dgb[4][2] = new Checkers(4,2,"Red");
+   dgb[6][2] = new Checkers(6,2,"Red");
 
-   dgb[5][1] = new Checkers(5,1,"Blue");
-   dgb[5][3] = new Checkers(5,3,"Blue");
+   dgb[1][5] = new Checkers(1,5,"Blue");
+   dgb[3][5] = new Checkers(3,5,"Blue");
    dgb[5][5] = new Checkers(5,5,"Blue");
-   dgb[5][7] = new Checkers(5,7,"Blue");
+   dgb[7][5] = new Checkers(7,5,"Blue");
 
-   dgb[6][0] = new Checkers(6,0,"Blue");
-   dgb[6][2] = new Checkers(6,2,"Blue");
-   dgb[6][4] = new Checkers(6,4,"Blue");
+   dgb[0][6] = new Checkers(0,6,"Blue");
+   dgb[2][6] = new Checkers(2,6,"Blue");
+   dgb[4][6] = new Checkers(4,6,"Blue");
    dgb[6][6] = new Checkers(6,6,"Blue");
    
-   dgb[7][1] = new Checkers(7,1,"Blue");
-   dgb[7][3] = new Checkers(7,5,"Blue");
-   dgb[7][5] = new Checkers(7,5,"Blue");
+   dgb[1][7] = new Checkers(7,1,"Blue");
+   dgb[3][7] = new Checkers(7,5,"Blue");
+   dgb[5][7] = new Checkers(7,5,"Blue");
    dgb[7][7] = new Checkers(7,7,"Blue"); 
  }
 

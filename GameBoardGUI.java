@@ -22,6 +22,7 @@ public class GameBoardGUI extends JFrame {
 		setVisible(true);
 	}
    public void update(){
+      System.out.println("Updating");
       canvas.repaint();
       canvas.revalidate();
    }

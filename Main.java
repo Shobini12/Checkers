@@ -7,8 +7,10 @@ public class Main
       GameBoard gb1 = new GameBoard();
       GameBoardGUI gb = new GameBoardGUI(gb1);
       gb1.movePiece("Blue",false);
+      System.out.println("First move done");
+      gb1.movePiece("Red",false);
+      System.out.println("Second move done");
       gb.update();
-      
       //declare instance variables and setup
       //ask for user inputs and settings to store in variable.
       //while !gameWon{
