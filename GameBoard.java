@@ -64,7 +64,7 @@ public class GameBoard {
     if(firstCheck && secondCheck && thirdCheck && fourthCheck && fifthCheck){
       //check for jump
       if(checkKing(fromX, fromY)){
-        kingJump(fromX, fromY);
+        checkKingJump(fromX, fromY);
       }else if(checkJump(fromX, fromY) == 0){
         forceJumpUR(fromX, fromY); 
       }else if(checkJump(fromX, fromY) == 1){
@@ -95,7 +95,7 @@ public class GameBoard {
     }
   }
 
-  public void kingJump(int x, int y){
+  public void checkKingJump(int x, int y){
     if(dgb[x+2][y+2]==null && dgb[x+1][y+1]!= null && !(dgb[x+1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){ 
       forceJumpUR(x,y);
     }else if(dgb[x-2][y+2]==null && dgb[x-1][y+1]!= null && !(dgb[x-1][y+1].getColor().equalsIgnoreCase(dgb[x][y].getColor()))){
