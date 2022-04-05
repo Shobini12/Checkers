@@ -41,7 +41,7 @@ public class GameBoard {
        }
     }
     //check if color of piece matches player
-    if(dgb[fromX][fromY].equals(color)){
+    if((dgb[fromX][fromY].getColor()).equals(color)){
       firstCheck = true;
     }
     //checks if the space is open
@@ -155,10 +155,10 @@ public class GameBoard {
    dgb[4][6] = new Checkers(4,6,"Blue");
    dgb[6][6] = new Checkers(6,6,"Blue");
    
-   dgb[1][7] = new Checkers(7,1,"Blue");
-   dgb[3][7] = new Checkers(7,5,"Blue");
-   dgb[5][7] = new Checkers(7,5,"Blue");
-   dgb[7][7] = new Checkers(7,7,"Blue"); 
+   dgb[1][7] = new Checkers(1,7,"Blue");
+   dgb[3][7] = new Checkers(3,7,"Blue");
+   dgb[5][7] = new Checkers(5,7,"Blue");
+   dgb[7][7] = new Checkers(7,7,"Blue");
  }
 
  public int toInt(char c){
