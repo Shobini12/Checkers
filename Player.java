@@ -46,49 +46,53 @@ public class Player{
                    gbd[i-1][f-1] = null;
                    gbd[i-2][f-2] = gbd[i][f];
                    gbd[i][f] = null;
+                   //System.out.println("JUMP DL");
                    System.out.println("Moved to " + (i-2) +" "+(f-2)+" from " + i + " " + f);
                    hasMoved = true;
                    break;
                  }
                }
-               if(i != 0 && f != 6 && i != 1 && f != 7){
-                 if(gbd[i-1][f+1] != null && !(gbd[i-1][f+1].getColor().equals("Blue")) && gbd[i-2][f+2] == null){
-                   gbd[i-1][f+1] = null;
-                   gbd[i-2][f+2] = gbd[i][f];
-                   gbd[i][f] = null;
-                   System.out.println("Moved to " + (i-2) +" "+(f+2)+" from " + i + " " + f);
-                   hasMoved = true;
-                   break;
-                 }
-               }
-               //if is king then it can jump backwards too
-               if(gbd[i][f].isKing()){
-                 if(i != 6 && f != 0 && i != 7 && f != 1){
+               if(i != 6 && f != 0 && i != 7 && f != 1){
                    if(gbd[i+1][f-1] != null && !(gbd[i+1][f-1].getColor().equals("Blue")) && gbd[i+2][f-2] == null){
                      gbd[i+1][f-1] = null;
                      gbd[i+2][f-2] = gbd[i][f];
                      gbd[i][f] = null;
+                     //System.out.println("JUMP DR");
                      System.out.println("Moved to " + (i+2) +" "+(f-2)+" from " + i + " " + f);
                      hasMoved = true;
                      break;
                    }
                  }
-                 if(i != 6 && f != 6 && i != 7 && f != 7){
-                   if(gbd[i+1][f+1] != null && !(gbd[i+1][f+1].getColor().equals("Blue")) && gbd[i+2][f+2] == null){
-                     gbd[i+1][f+1] = null;
-                     gbd[i+2][f+2] = gbd[i][f];
-                     gbd[i][f] = null;
-                     System.out.println("Moved to " + (i+2) +" "+(f+2)+" from " + i + " " + f);
-                     hasMoved = true;
-                     break;
-                   }
+               //if is king then it can jump backwards too
+               if(gbd[i][f].isKing()){
+                 if(i != 0 && f != 6 && i != 1 && f != 7){
+                 if(gbd[i-1][f+1] != null && !(gbd[i-1][f+1].getColor().equals("Blue")) && gbd[i-2][f+2] == null){
+                   gbd[i-1][f+1] = null;
+                   gbd[i-2][f+2] = gbd[i][f];
+                   gbd[i][f] = null;
+                   //System.out.println("JUMP UL");
+                   //System.out.println("Moved to " + (i-2) +" "+(f+2)+" from " + i + " " + f);
+                   hasMoved = true;
+                   break;
+                 }
+               }
+                     if(i != 6 && f != 6 && i != 7 && f != 7){
+                      if(gbd[i+1][f+1] != null && !(gbd[i+1][f+1].getColor().equals("Blue")) && gbd[i+2][f+2] == null){
+                        gbd[i+1][f+1] = null;
+                        gbd[i+2][f+2] = gbd[i][f];
+                        gbd[i][f] = null;
+                        //System.out.println("JUMP UR");
+                        //System.out.println("Moved to " + (i+2) +" "+(f+2)+" from " + i + " " + f);
+                        hasMoved = true;
+                        break;
+                      }
+                    }
                  }
                }
              }
           }
         }
       }
-    }
     if(hasMoved){
       AImove(gbd,true);
     }
