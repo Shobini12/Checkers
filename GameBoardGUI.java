@@ -57,7 +57,7 @@ public class GameBoardGUI extends JFrame {
 					}
 				}
 			}
-			repaint();
+		
 			//check 2d gb array to determine piece placement
          Checkers[][] checkers = gameboard.getBoard();
          String color;
