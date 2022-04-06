@@ -235,4 +235,61 @@ public class GameBoard {
     }
    return toX;
  }
+      public String checkWin() {
+        int numRed = 0;
+        int numBlue = 0;
+        for (Checkers[] j : dgb) {
+            for (Checkers i : j) {
+                if (i.getColor().toLowerCase().equals("blue")) {
+                    numBlue += 1;
+                }
+                if (i.getColor().toLowerCase().equals("red")) {
+                    numRed += 1;
+                }
+            }
+        }
+        if (numRed == 0) {
+            return "blue";
+        }
+        if (numBlue == 0) {
+            return "red";
+        }
+        return null;
+    }
+
+    public void checkKing() {
+        if (dgb[0][0].getColor().toLowerCase().equals("blue")) {
+            dgb[0][0] = null;
+            dgb[0][0] = new KingChecker(0, 0, "blue");
+        }
+        if (dgb[0][2].getColor().toLowerCase().equals("blue")) {
+            dgb[0][2] = null;
+            dgb[0][2] = new KingChecker(0, 2, "blue");
+        }
+        if (dgb[0][4].getColor().toLowerCase().equals("blue")) {
+            dgb[0][4] = null;
+            dgb[0][4] = new KingChecker(0, 0, "blue");
+        }
+        if (dgb[0][6].getColor().toLowerCase().equals("blue")) {
+            dgb[0][6] = null;
+            dgb[0][6] = new KingChecker(0, 0, "blue");
+
+        }
+        if (dgb[1][7].getColor().toLowerCase().equals("red")) {
+            dgb[1][7] = null;
+            dgb[1][7] = new KingChecker(0, 0, "red");
+        }
+        if (dgb[3][7].getColor().toLowerCase().equals("red")) {
+            dgb[3][7] = null;
+            dgb[3][7] = new KingChecker(0, 0, "red");
+        }
+        if (dgb[5][7].getColor().toLowerCase().equals("red")) {
+            dgb[5][7] = null;
+            dgb[5][7] = new KingChecker(0, 0, "red");
+        }
+        if (dgb[7][7].getColor().toLowerCase().equals("red")) {
+            dgb[7][7] = null;
+            dgb[7][7] = new KingChecker(0, 0, "red");
+        }
+    }
 }
