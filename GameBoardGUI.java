@@ -5,7 +5,7 @@ import java.util.*;
 
 public class GameBoardGUI extends JFrame {
 	
-	private checkerCanvas canvas = new checkerCanvas();
+   private checkerCanvas canvas = new checkerCanvas();
    private GameBoard gameboard;
 	
 	public GameBoardGUI(GameBoard check){
@@ -21,20 +21,20 @@ public class GameBoardGUI extends JFrame {
 		
 		setVisible(true);
 	}
-   public void update(){
-      canvas.repaint();
-      canvas.revalidate();
-   }
-	
+   
 	private class checkerCanvas extends Canvas {
 		
 	
 		
+	
+		
+		
 		@Override
+		public void update(Graphics g){
+			repaint();
+		}
 		
-			
-		
-		
+		@Override
 		public void paint(Graphics g){
 			
 			int square = 65;  //size of each square
@@ -57,8 +57,9 @@ public class GameBoardGUI extends JFrame {
 					}
 				}
 			}
+			repaint();
 			//check 2d gb array to determine piece placement
-         Checkers[][] checkers= gameboard.getBoard();
+         Checkers[][] checkers = gameboard.getBoard();
          String color;
    		for(int a=0;a<8;a++){
    			for(int b=0;b<8;b++){
@@ -86,9 +87,7 @@ public class GameBoardGUI extends JFrame {
    				}
    		   }
          }
-		}		
+		}
+		
 	}	
 }
-	
-	
-
