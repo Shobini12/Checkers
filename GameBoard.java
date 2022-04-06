@@ -130,6 +130,47 @@ public class GameBoard {
     dgb[x][y] = null;
   }
  public void initBoard(){
+  	 /*
+	 for(int a=0;a<3;a++){ //a is y level b c and d is x
+		 if(a == 0){
+			 for(int b=0; b<7; b+=2){
+				 dgb[b][a] = new Checkers(b, a, "Red");
+			 }
+		 }
+		 else if(a == 1){
+			 for(int c=1; c<8; c+=2){
+				  dgb[c][a] = new Checkers(c, a, "Red");
+			  }
+		  }
+		else if(a == 2){
+			for(int d=0; d<7; d+=2){
+				 dgb[d][a] = new Checkers(d, a, "Red");
+			 } 
+		 }
+	 }
+	 
+	 
+	 
+	  for(int e=5;e<9;e++){ //e is y level f g and h is x
+		 if(e == 5){
+			 for(int f=1; f<8; f+=2){
+				 dgb[f][e] = new Checkers(f, e, "Blue");
+			 }
+		 }
+		 else if(e == 6){
+			 for(int g=0; g<7; g+=2){
+				  dgb[g][e] = new Checkers(g, e, "Blue");
+			  }
+		  }
+		else if(e == 7){
+			for(int h=1; h<8; h+=2){
+				 dgb[h][e] = new Checkers(h, e, "Blue");
+			 } 
+		 }
+	 }
+	 */
+	 
+
    dgb[0][0] = new Checkers(0,0,"Red");
    dgb[2][0] = new Checkers(2,0,"Red");
    dgb[4][0] = new Checkers(4,0,"Red");
@@ -155,11 +196,11 @@ public class GameBoard {
    dgb[4][6] = new Checkers(4,6,"Blue");
    dgb[6][6] = new Checkers(6,6,"Blue");
    
-<<<<<<< HEAD
+
    dgb[1][7] = new Checkers(1,7,"Blue");
    dgb[3][7] = new Checkers(3,7,"Blue");
    dgb[5][7] = new Checkers(5,7,"Blue");
-   dgb[7][7] = new Checkers(7,7,"Blue");
+   dgb[7][7] = new Checkers(7,7,"Blue");  
  }
 
  public int toInt(char c){
