@@ -47,7 +47,7 @@ public class Player{
                    gbd[i-2][f-2] = gbd[i][f];
                    gbd[i][f] = null;
                    //System.out.println("JUMP DL");
-                   System.out.println("Moved to " + (i-2) +" "+(f-2)+" from " + i + " " + f);
+                   //System.out.println("Moved to " + (i-2) +" "+(f-2)+" from " + i + " " + f);
                    hasMoved = true;
                    break;
                  }
@@ -58,7 +58,7 @@ public class Player{
                      gbd[i+2][f-2] = gbd[i][f];
                      gbd[i][f] = null;
                      //System.out.println("JUMP DR");
-                     System.out.println("Moved to " + (i+2) +" "+(f-2)+" from " + i + " " + f);
+                     //System.out.println("Moved to " + (i+2) +" "+(f-2)+" from " + i + " " + f);
                      hasMoved = true;
                      break;
                    }
@@ -107,10 +107,10 @@ public class Player{
                if((gbd[i][f].getColor()).equals("Blue")){
                  if(i != 0 && f != 0){
                    if(gbd[i-1][f-1] == null){
-                     System.out.println((i-1) + " " + (f-1));
+                     //System.out.println((i-1) + " " + (f-1));
                      gbd[i-1][f-1] = gbd[i][f];
                      gbd[i][f] = null;
-                     System.out.println("Moved to " + (i-1) +" "+(f-1)+" from " + i + " " + f);
+                     //System.out.println("Moved to " + (i-1) +" "+(f-1)+" from " + i + " " + f);
                      hasMoved = true;
                      break;
                    }
@@ -119,7 +119,7 @@ public class Player{
                    if(gbd[i-1][f+1] == null){
                      gbd[i-1][f+1] = gbd[i][f];
                      gbd[i][f] = null;
-                     System.out.println("Moved to " + (i-1) +" "+(f+1)+" from " + i + " " + f);
+                     //System.out.println("Moved to " + (i-1) +" "+(f+1)+" from " + i + " " + f);
                      hasMoved = true;
                      break;
                    }
@@ -130,7 +130,7 @@ public class Player{
                      if(gbd[i+1][f-1] == null){
                        gbd[i+1][f-1] = gbd[i][f];
                        gbd[i][f] = null;
-                       System.out.println("Moved to " + (i+1) +" "+(f-1)+" from " + i + " " + f);
+                       //System.out.println("Moved to " + (i+1) +" "+(f-1)+" from " + i + " " + f);
                        hasMoved = true;
                        break;
                      }
@@ -139,7 +139,7 @@ public class Player{
                      if(gbd[i+1][f+1] == null){
                        gbd[i+1][f+1] = gbd[i][f];
                        gbd[i][f] = null;
-                       System.out.println("Moved to " + (i+1) +" "+(f+1)+" from " + i + " " + f);
+                       //System.out.println("Moved to " + (i+1) +" "+(f+1)+" from " + i + " " + f);
                        hasMoved = true;
                        break;
                      }
