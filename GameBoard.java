@@ -240,11 +240,13 @@ public class GameBoard {
         int numBlue = 0;
         for (Checkers[] j : dgb) {
             for (Checkers i : j) {
-                if (i.getColor().toLowerCase().equals("blue")) {
-                    numBlue += 1;
-                }
-                if (i.getColor().toLowerCase().equals("red")) {
-                    numRed += 1;
+                if(i != null) {
+                    if (i.getColor().toLowerCase().equals("blue")) {
+                        numBlue += 1;
+                    }
+                    if (i.getColor().toLowerCase().equals("red")) {
+                        numRed += 1;
+                    }
                 }
             }
         }
@@ -254,7 +256,7 @@ public class GameBoard {
         if (numBlue == 0) {
             return "red";
         }
-        return null;
+        return "null";
     }
 
     public void checkKing() {

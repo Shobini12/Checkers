@@ -4,11 +4,40 @@ public class Main
   
   public static void main(String[] args)throws Exception
     {
-      GameBoard g = new GameBoard();
-      GameBoardGUI k = new GameBoardGUI(g);
-      Player p1 = new Player();
-      p1.takeTurn(g);
-      //declare instance variables and setup
+      //variables
+      Scanner sc = new Scanner(System.in);
+      Player p1;
+      Player p2;
+      GameBoard gameBoard;
+      GameBoardGUI gui;
+      String p1Color = "";
+      String p2Color = "";
+      String p1Name = "";
+      String p2Name = "";
+
+      System.out.println("(Player 1) What is your name? (leave blank to play as AI): ");
+      p1Name = sc.nextLine();
+      System.out.println("(Player 2) What is your name? (leave blank to play as AI): ");
+      p2Name = sc.nextLine();
+
+      gameBoard = new GameBoard();
+      gui = new GameBoardGUI(gameBoard);
+      if(p1Name.equals("")){
+        p1 = new Player();
+      }
+      else{
+        p1 = new Player(p1Name, "Red");
+      }
+      if(p2Name.equals("")){
+        p2 = new Player();
+      }
+      else{
+        p2 = new Player(p1Name, "Blue");
+      }
+        System.out.println("P1 TURN");
+        p1.takeTurn(gameBoard);
+
+
       //ask for user inputs and settings to store in variable.
       //while !gameWon{
       //ask player one to make move
