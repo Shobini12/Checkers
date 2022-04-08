@@ -31,10 +31,8 @@ public class Main
         p2 = new Player(p2Name, "Blue");
       }
       while(gameBoard.checkWin().equals("null")) {
-        clearScreen();
         System.out.println("P1 TURN");
         p1.takeTurn(gameBoard);
-        clearScreen();
         if (!gameBoard.checkWin().equals("null")){
           break;
         }
@@ -42,6 +40,5 @@ public class Main
         p2.takeTurn(gameBoard);
       }
       System.out.println(gameBoard.checkWin() + " Wins!!!");
-    }
-}
+}}
 
