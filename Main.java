@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Main
 {
   
@@ -34,24 +35,19 @@ public class Main
       else{
         p2 = new Player(p1Name, "Blue");
       }
+      while(gameBoard.checkWin().equals("null")) {
+        clearScreen();
         System.out.println("P1 TURN");
         p1.takeTurn(gameBoard);
-
-
-      //ask for user inputs and settings to store in variable.
-      //while !gameWon{
-      //ask player one to make move
-      //checkjump, prompt the user to jump if true.
-      //check if the move is valid
-      //if the move is valid then do, if not then reask.
-      //update GUI
-      //ask player two to make a move
-      //checkjump, prompt the user to jump if true.
-      //check if the move is valid
-      //if the move is valid then do, if no reask.
-      //update the GUI
-      //end of while loop}
-      //display winning screen.
+        clearScreen();
+        System.out.println("P2 TURN");
+        p2.takeTurn(gameBoard);
+      }
+      System.out.println(gameBoard.checkWin() + " Wins!!!");
     }
+  public static void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
 }
 
