@@ -92,18 +92,16 @@ public class GameBoardGUI extends JFrame {
    						if(checkers[a][b].isKing() == false){
    							g.fillOval((xBound + a*square), (yBound - b*square), square, square);	
    						}else{
-   							g.fillOval((xBound + a*square), (yBound - b*square), square, square);
-   							g.setColor(Color.red);	
-   							g.fillOval((xBound + a*square), (yBound - b*square), (square - 20), (square - 20));	
+   							g.setColor(Color.green);	
+   							g.fillOval((xBound + a*square), (yBound - b*square), square, square);	
    						}
    					}else{
    						g.setColor(Color.red);
    						if(checkers[a][b].isKing() == false){
    							g.fillOval((xBound + a*square), (yBound - b*square), square, square);	
    						}else{
-   							g.fillOval((xBound + a*square), (yBound - b*square), square, square);
-   							g.setColor(Color.blue);	
-   							g.fillOval((xBound + a*square), (yBound - b*square), (square - 20), (square- 20));	
+   							g.setColor(Color.orange);	
+   							g.fillOval((xBound + a*square), (yBound - b*square), square, square);		
    						}
    					}
    				}
