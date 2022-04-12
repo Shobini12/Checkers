@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class GameBoard {
   Scanner kb = new Scanner(System.in);
@@ -12,80 +12,102 @@ public class GameBoard {
   }
   
   public void movePiece(String color, boolean isKing){
-    boolean firstCheck = false;
-    boolean secondCheck = false;
-    boolean thirdCheck = false;
-    boolean fourthCheck = false;
-    
-    //check that these inputs are valid and doesn't make it go off the board
-    boolean isNull = true;
-    char fromXChar = 'a';
-    int fromX = 0;
-    int fromY = 0;
-    char toXChar = 'a';
-    int toX = 0;
-    int toY = 0;
-    while(isNull){
-       System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
-       String from = kb.nextLine();
-       fromXChar = from.charAt(0);
-       fromX = toInt(fromXChar);
-       fromY = Integer.parseInt(from.substring(1));
-       System.out.println("Where would you like to move this piece?     Enter a letter (A-H) and number (0-7)");
-       String to = kb.nextLine();
-       toXChar = to.charAt(0);
-       toX = toInt(toXChar);
-       toY = Integer.parseInt(to.substring(1));
-       if(!(dgb[fromX][fromY] == null)){
-         isNull = false;
+    boolean noMove = true;
+    while(noMove){
+       boolean firstCheck = false;
+       boolean secondCheck = false;
+       boolean thirdCheck = false;
+       boolean fourthCheck = false;
+       
+       //check that these inputs are valid and doesn't make it go off the board
+       boolean isNull = true;
+       char fromXChar = 'a';
+       int fromX = 0;
+       int fromY = 0;
+       char toXChar = 'a';
+       int toX = 0;
+       int toY = 0;
+       while(isNull){
+          System.out.println("Which piece do you want to move? Enter a     letter (A-H) and number (0-7)");
+          String from = kb.nextLine();
+          fromXChar = from.charAt(0);
+          fromX = toInt(fromXChar);
+          fromY = Integer.parseInt(from.substring(1));
+          System.out.println("Where would you like to move this piece?     Enter a letter (A-H) and number (0-7)");
+          String to = kb.nextLine();
+          toXChar = to.charAt(0);
+          toX = toInt(toXChar);
+          toY = Integer.parseInt(to.substring(1));
+          if(!(dgb[fromX][fromY] == null)){
+            isNull = false;
+          }
+          else{
+            System.out.println("Please put a valid option");
+          }
        }
-       else{
-         System.out.println("Please put a valid option");
+       //check if color of piece matches player
+       if((dgb[fromX][fromY].getColor()).equals(color)){
+         //System.out.println("Check 1");
+         firstCheck = true;
        }
-    }
-    //check if color of piece matches player
-    if((dgb[fromX][fromY].getColor()).equals(color)){
-      //System.out.println("Check 1");
-      firstCheck = true;
-    }
-    //checks if the space is open
-    if(dgb[toX][toY] == null){ 
-      //System.out.println("Check 2");
-      secondCheck = true;
-    }
-    //check that the piece is moving forward
-    if(toY>fromY){
-      //System.out.println("Check 3");
-      thirdCheck = true;
-    }
-    
-    //check if where you want to move is a diagonal movement
-     if((toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 && toY == fromY+1)){ 
-      //System.out.println("Check 4");
-      fourthCheck = true;
-    }
-
-    //Kings can move backwards
-    if(dgb[fromX][fromY].isKing()&&(toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
-      //System.out.println("Check 3");
-      //System.out.println("Check 4");
-      thirdCheck = true;
-      fourthCheck = true;
-    }
-
-    //make sure all checks are true before moving the piece
-    if(firstCheck && secondCheck && thirdCheck){
-      //check for jump
-      if(checkJump(fromX, fromY) == 0){
-        forceJumpRight(fromX, fromY); 
-      }else if(checkJump(fromX, fromY) == 1){
-        forceJumpLeft(fromX, fromY); 
-      }else{
-         if(fourthCheck){
-            dgb[toX][toY] = dgb[fromX][fromY];
-            dgb[fromX][fromY] = null;
+       //checks if the space is open
+       if(dgb[toX][toY] == null){ 
+         //System.out.println("Check 2");
+         secondCheck = true;
+       }
+       if(color.equals("Red")){
+         //check that the piece is moving forward
+          if(toY>fromY){
+            //System.out.println("Check 3");
+            thirdCheck = true;
+          }
+          //check for diagonal movement
+          if((toX == fromX+1 && toY == fromY+1)||(toX == fromX-1 && toY == fromY+1)){ 
+             //System.out.println("Check 4");
+             fourthCheck = true;
+          }
+       }
+       else if(color.equals("Blue")){
+         //check that the piece is moving forward
+         if(toY<fromY){
+            //System.out.println("Check 3");
+            thirdCheck = true;
+          }
+          //check for diagonal movement
+          if((toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){ 
+             //System.out.println("Check 4");
+             fourthCheck = true;
+          }
+       }
+   
+       //Kings can move backwards
+       if(dgb[fromX][fromY].isKing()){
+          if((toX == fromX+1 && toY == fromY+1)||(toX ==    fromX-1 && toY == fromY+1) ||(toX == fromX+1 && toY == fromY-1)||(toX == fromX-1 && toY == fromY-1)){
+            //System.out.println("Check 3");
+            //System.out.println("Check 4");
+            System.out.println("King Check");
+            thirdCheck = true;
+            fourthCheck = true;
+          }
+       }
+   
+       //make sure all checks are true before moving the piece
+       if(firstCheck && secondCheck && thirdCheck){
+         //check for jump
+         if(checkJump(fromX, fromY) == 0){
+           forceJumpRight(fromX, fromY);
+           noMove = false; 
+         }else if(checkJump(fromX, fromY) == 1){
+           forceJumpLeft(fromX, fromY); 
+           noMove = false;
+         }else{
+            if(fourthCheck){
+               dgb[toX][toY] = dgb[fromX][fromY];
+               dgb[fromX][fromY] = null;
+               noMove = false;
+            }
          }
-      }
+       }
     }
   }
 
@@ -140,55 +162,13 @@ public class GameBoard {
     //System.out.print("GO RIGHT");
     dgb[x+1][y+1] = null;
   }
-  
   public void doubleJumpLeft(int x, int y){
     dgb[x-2][y+2] = dgb[x][y];
     //System.out.print("GO LEFT");
     dgb[x][y] = null;
   }
  public void initBoard(){
-  	 /*
-	 for(int a=0;a<3;a++){ //a is y level b c and d is x
-		 if(a == 0){
-			 for(int b=0; b<7; b+=2){
-				 dgb[b][a] = new Checkers(b, a, "Red");
-			 }
-		 }
-		 else if(a == 1){
-			 for(int c=1; c<8; c+=2){
-				  dgb[c][a] = new Checkers(c, a, "Red");
-			  }
-		  }
-		else if(a == 2){
-			for(int d=0; d<7; d+=2){
-				 dgb[d][a] = new Checkers(d, a, "Red");
-			 } 
-		 }
-	 }
-	 
-	 
-	 
-	  for(int e=5;e<9;e++){ //e is y level f g and h is x
-		 if(e == 5){
-			 for(int f=1; f<8; f+=2){
-				 dgb[f][e] = new Checkers(f, e, "Blue");
-			 }
-		 }
-		 else if(e == 6){
-			 for(int g=0; g<7; g+=2){
-				  dgb[g][e] = new Checkers(g, e, "Blue");
-			  }
-		  }
-		else if(e == 7){
-			for(int h=1; h<8; h+=2){
-				 dgb[h][e] = new Checkers(h, e, "Blue");
-			 } 
-		 }
-	 }
-	 */
-	 
-
-   dgb[0][0] = new Checkers(0,0,"Red");
+  	dgb[0][0] = new Checkers(0,0,"Red");
    dgb[2][0] = new Checkers(2,0,"Red");
    dgb[4][0] = new Checkers(4,0,"Red");
    dgb[6][0] = new Checkers(6,0,"Red");
@@ -252,7 +232,7 @@ public class GameBoard {
     }
    return toX;
  }
-      public String checkWin() {
+       public String checkWin() {
         int numRed = 0;
         int numBlue = 0;
         for (Checkers[] j : dgb) {
