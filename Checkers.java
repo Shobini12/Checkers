@@ -5,29 +5,30 @@ public class Checkers
     private int locationy;
     private int locationx;
     private String color;
-    
+    //Constructor, called from main.
     public Checkers(int x, int y, String c)
     {
       locationy = y;
       locationx = x;
       color = c;
     }
-    
+    //get location method to get location of checker.
     public int getLocation()
     {
       return locationx + locationy;
     }
-    
+    //getColor method returns color of checker.
     public String getColor()
     {
       return color;
     }
-
+    //getKing method returns if the object in the specified array location is a king.
     public boolean isKing()
     {
       return false;
     }
   }
+  //KingChecker objects, same methods as the checkers.
 class KingChecker extends Checkers
   {
     private int locationx;
@@ -54,6 +55,5 @@ class KingChecker extends Checkers
       return true;
     }
   }
-//awd
 
 
