@@ -7,7 +7,7 @@ public class GameBoardGUI extends JFrame {
 	
    private checkerCanvas canvas = new checkerCanvas();
    private GameBoard gameboard;
-	
+	//make blank canvas
 	public GameBoardGUI(GameBoard check){
       gameboard = check;
 		setLayout(new BorderLayout());
@@ -28,12 +28,12 @@ public class GameBoardGUI extends JFrame {
 		
 	
 		
-		
+		//update method
 		@Override
 		public void update(Graphics g){
 			repaint();
 		}
-		
+		//paint method
 		@Override
 		public void paint(Graphics g){
 			
@@ -48,7 +48,7 @@ public class GameBoardGUI extends JFrame {
 			//draw board
 			int baseCord = 133;
 			int baseCordY = 593;
-			Color myColor2 = new Color(255, 255, 255);
+			Color myColor2 = new Color(255, 255, 255); //draw letters and dnumbers
             g.setColor(myColor2);
 			g.drawString("A", baseCord, 645);
 			g.drawString("B", (baseCord + square), 645);
@@ -67,7 +67,7 @@ public class GameBoardGUI extends JFrame {
 			g.drawString("5", 80, (baseCordY - square*5));
 			g.drawString("6", 80, (baseCordY - square*6));
 			g.drawString("7", 80, (baseCordY - square*7));
-			
+			//draw board
 			for(int x=0;x<8;x++){
 				for(int y=0;y<8;y++){
 					g.setColor(Color.black);
@@ -80,7 +80,7 @@ public class GameBoardGUI extends JFrame {
 				}
 			}
 			
-			//check 2d gb array to determine piece placement
+			//check 2d gb array to determine piece placement and draw piece
          Checkers[][] checkers = gameboard.getBoard();
          String color;
    		for(int a=0;a<8;a++){
